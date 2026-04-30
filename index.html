@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prayer Partner Card — CBMC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap">
+<style>
+/* ── Reset ──────────────────────────────────────────────── */
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0f1f35; --navy2:#1a3055;
+  --orange:#e87722; --orange2:#f59340;
+  --cream:#f8f6f2; --warm:#4a3820;
+  --border:#c8bba4; --muted:#8a7e6e;
+}
+body{
+  font-family:'Barlow',sans-serif;
+  min-height:100vh;
+  background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 55%,var(--navy) 100%);
+  padding:2rem 1rem;
+  display:flex;flex-direction:column;align-items:center;
+}
+
+/* ── Card ───────────────────────────────────────────────── */
+.card{width:100%;max-width:660px;background:var(--cream);border-radius:6px;
+  box-shadow:0 32px 80px rgba(0,0,0,.55),0 0 0 1px rgba(232,119,34,.25);overflow:hidden}
+
+/* ── Header ─────────────────────────────────────────────── */
+.card-header{
+  background:linear-gradient(135deg,var(--navy),var(--navy2));
+  padding:2rem 2.5rem 1.75rem;text-align:center;position:relative;
+}
+.card-header::after{content:'';position:absolute;bottom:0;left:0;right:0;
+  height:3px;background:linear-gradient(90deg,transparent,var(--orange),transparent)}
+.cbmc-logo{height:42px;width:auto;margin-bottom:14px;filter:brightness(0) invert(1)}
+#logo-fallback{display:none;margin-bottom:14px}
+#logo-fallback .f-name{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:800;letter-spacing:.1em;color:#fff}
+#logo-fallback .f-sub{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:.25em;color:rgba(255,255,255,.7);text-transform:uppercase}
+.card-title{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;
+  letter-spacing:.08em;text-transform:uppercase;color:#fff;margin-bottom:4px}
+.card-sub{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;
+  letter-spacing:.35em;text-transform:uppercase;color:var(--orange2);margin-bottom:10px}
+.verse-tag{display:inline-block;background:rgba(232,119,34,.18);border:1px solid rgba(232,119,34,.4);
+  border-radius:20px;padding:3px 14px;font-family:'Barlow',sans-serif;font-size:12px;
+  font-style:italic;color:var(--orange2);letter-spacing:.04em}
+.hdr-rule{display:flex;align-items:center;gap:10px;margin-top:14px}
+.hrl{flex:1;height:1px;background:rgba(232,119,34,.3)}
+.hrd{width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0}
+
+/* ── Tabs ───────────────────────────────────────────────── */
+.tabs{display:flex;border-bottom:1px solid #ddd5c0;background:#f0ebe0}
+.tab{flex:1;padding:.7rem;background:none;border:none;border-bottom:3px solid transparent;
+  font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all .2s}
+.tab.active{border-bottom-color:var(--orange);color:var(--navy)}
+.tab:hover:not(.active){color:var(--navy);background:rgba(0,0,0,.03)}
+
+/* ── Form body ──────────────────────────────────────────── */
+.body{padding:2rem 2.5rem 2.5rem}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem}
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:1.25rem}
+.lbl{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.22em;color:var(--warm);text-transform:uppercase}
+
+/* Selects */
+.sel-wrap{position:relative}
+.sel-wrap::after{content:'▾';position:absolute;right:10px;top:50%;transform:translateY(-50%);
+  color:var(--orange);pointer-events:none;font-size:14px;font-weight:bold}
+select{-webkit-appearance:none;appearance:none;background:#fff;border:1.5px solid var(--border);
+  border-radius:4px;padding:9px 36px 9px 12px;font-family:'Barlow',sans-serif;font-size:15px;
+  color:var(--navy);outline:none;width:100%;cursor:pointer;transition:border-color .2s}
+select:focus{border-color:var(--orange)}
+
+/* Auto-fill display */
+.af-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem}
+.af-field{display:flex;flex-direction:column;gap:5px}
+.af-val{position:relative;border-bottom:2px solid var(--border);padding:7px 28px 7px 0;
+  font-family:'Barlow',sans-serif;font-size:15px;color:var(--muted);font-style:italic;
+  min-height:36px;transition:all .3s}
+.af-val.filled{color:var(--navy);font-style:normal;border-bottom-color:var(--orange)}
+.af-val.filled::after{content:'✓';position:absolute;right:0;top:7px;color:var(--orange);
+  font-size:13px;font-weight:bold}
+
+/* Text inputs */
+.plain{background:transparent;border:none;border-bottom:2px solid var(--border);
+  padding:7px 2px;font-family:'Barlow',sans-serif;font-size:15px;color:var(--navy);
+  outline:none;width:100%;transition:border-color .2s}
+.plain:focus{border-bottom-color:var(--orange)}
+
+/* Textareas */
+textarea{background:rgba(255,255,255,.65);border:1.5px solid var(--border);border-radius:4px;
+  padding:10px 12px;font-family:'Barlow',sans-serif;font-size:14px;color:var(--navy);
+  outline:none;resize:vertical;min-height:80px;width:100%;line-height:1.6;
+  transition:border-color .2s}
+textarea:focus{border-color:var(--orange)}
+textarea::placeholder{color:#b0a494}
+
+/* Unconvinced box */
+.unconvinced-box{background:rgba(15,31,53,.05);border:1.5px solid var(--border);
+  border-left:3px solid var(--orange);border-radius:4px;padding:12px 14px;margin-bottom:1.25rem}
+
+/* Praying-for box */
+.praying-for-box{background:rgba(232,119,34,.06);border:1.5px solid rgba(232,119,34,.35);
+  border-radius:4px;padding:14px 16px;margin-bottom:1.5rem}
+.praying-for-box .lbl{color:var(--orange);font-size:12px}
+
+/* Divider */
+.section-divider{display:flex;align-items:center;gap:10px;margin:0.25rem 0 1.25rem}
+.sd-line{flex:1;height:1px;background:#ddd5c0}
+.sd-text{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--muted);white-space:nowrap;padding:0 6px}
+
+/* Submit button */
+.btn-submit{
+  width:100%;background:linear-gradient(135deg,var(--orange),var(--orange2));
+  color:#fff;border:none;padding:1rem 1rem;
+  font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:800;
+  letter-spacing:.25em;text-transform:uppercase;cursor:pointer;border-radius:4px;
+  box-shadow:0 4px 18px rgba(232,119,34,.4);transition:all .2s;margin-top:1.5rem}
+.btn-submit:hover:not(:disabled){box-shadow:0 6px 24px rgba(232,119,34,.6);transform:translateY(-1px)}
+.btn-submit:disabled{opacity:.6;cursor:not-allowed;transform:none}
+
+/* States */
+.loading-spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.4);
+  border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:8px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.success-banner{display:none;background:#1a5c2a;color:#fff;border-radius:4px;
+  padding:16px 20px;margin-top:1.5rem;text-align:center;font-family:'Barlow',sans-serif}
+.success-banner .s-icon{font-size:28px;margin-bottom:6px}
+.success-banner .s-title{font-family:'Barlow Condensed',sans-serif;font-size:16px;
+  font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px}
+.success-banner .s-sub{font-size:13px;opacity:.85;line-height:1.5}
+
+.error-banner{display:none;background:#7a1a1a;color:#fff;border-radius:4px;
+  padding:14px 18px;margin-top:1.5rem;text-align:center;font-family:'Barlow',sans-serif;font-size:13px}
+
+/* QR pane */
+.qr-body{padding:2rem 2.5rem 2.5rem;text-align:center}
+.qr-instruction{font-style:italic;font-size:15px;color:var(--warm);margin-bottom:1.5rem;line-height:1.6}
+.qr-display{display:inline-flex;flex-direction:column;align-items:center;gap:12px;padding:1.5rem;
+  background:#fff;border:2px solid var(--border);border-radius:6px;box-shadow:0 8px 32px rgba(0,0,0,.12)}
+.qr-lbl{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:.25em;color:var(--warm);text-transform:uppercase}
+.qr-placeholder{width:200px;height:200px;border:2px dashed var(--border);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;font-style:italic;font-size:14px;
+  color:var(--muted);padding:1rem;margin:0 auto;text-align:center}
+.qr-note{font-style:italic;font-size:13px;color:var(--muted);margin-top:1.5rem;line-height:1.7;
+  padding:1rem;background:rgba(15,31,53,.05);border-radius:4px;border:1px solid #ddd5c0;text-align:left}
+.qr-note strong{font-style:normal;font-family:'Barlow Condensed',sans-serif;font-size:10px;
+  letter-spacing:.18em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--navy)}
+.btn-outline{background:transparent;color:var(--navy);border:2px solid var(--navy);
+  padding:.75rem 1.5rem;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;cursor:pointer;border-radius:4px;
+  transition:all .2s;margin-top:1.25rem}
+.btn-outline:hover{background:rgba(15,31,53,.06)}
+
+/* Footer */
+.page-footer{text-align:center;margin-top:2rem;font-style:italic;font-size:12px;
+  color:rgba(248,246,242,.45);letter-spacing:.04em}
+.tagline-footer{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;
+  letter-spacing:.3em;text-transform:uppercase;color:rgba(232,119,34,.5);margin-top:4px}
+
+@keyframes af-flash{0%{background:rgba(232,119,34,.18)}100%{background:transparent}}
+.flash{animation:af-flash .6s ease-out}
+.hidden{display:none}
+
+@media(max-width:520px){
+  .two-col,.af-row{grid-template-columns:1fr}
+  .body,.qr-body{padding:1.5rem}
+  .card-title{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE (Step 6 in
+     CBMC_Setup_Guide.md). Replace the placeholder below.
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyTbNycqvfZ5_xmRhFkZFSIAJDKBCm0XlhFPF7QAFMv4zxeuVR7F6f9gBlDM8NbxKdixw/exec';
+</script>
+<!-- ════════════════════════════════════════════════════════ -->
+
+<div class="card">
+
+  <!-- Header -->
+  <div class="card-header">
+    <img class="cbmc-logo"
+      src="https://cbmc.com/wp-content/themes/cbmc/assets/images/cbmc-horizontal-white-mono.svg"
+      alt="CBMC"
+      onerror="this.style.display='none';document.getElementById('logo-fallback').style.display='block'">
+    <div id="logo-fallback">
+      <div class="f-name">CBMC</div>
+      <div class="f-sub">Christian Business Men's Connection</div>
+    </div>
+    <div class="card-title">Prayer Partner Card</div>
+    <div class="card-sub">Leadership Institute</div>
+    <div class="verse-tag">James 5:16</div>
+    <div class="hdr-rule"><div class="hrl"></div><div class="hrd"></div><div class="hrl"></div></div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab active" id="tab-form" onclick="switchTab('form')">Fill Out Card</button>
+    <button class="tab" id="tab-qr" onclick="switchTab('qr')">Share QR Code</button>
+  </div>
+
+  <!-- ── Form Pane ───────────────────────────────────────── -->
+  <div id="pane-form" class="body">
+
+    <!-- Name + Date -->
+    <div class="two-col">
+      <div class="field">
+        <label class="lbl">Select Your Name</label>
+        <div class="sel-wrap">
+          <select id="f-name" onchange="onNameChange()">
+            <option value="">&#8212; Choose your name &#8212;</option>
+            <option value="Derek Berning">Derek Berning</option>
+            <option value="Steve Beaman">Steve Beaman</option>
+            <option value="Dan Schmoyer">Dan Schmoyer</option>
+            <option value="Eric Agrimson">Eric Agrimson</option>
+            <option value="Bob Miller">Bob Miller</option>
+            <option value="Kyle Trontvet">Kyle Trontvet</option>
+            <option value="Scott Adams">Scott Adams</option>
+            <option value="Dan Olson">Dan Olson</option>
+            <option value="Craig Darcy">Craig Darcy</option>
+            <option value="__guest__">Guest / Other...</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label class="lbl">Date</label>
+        <input type="text" class="plain" id="f-date" placeholder="MM/DD/YY">
+      </div>
+    </div>
+
+    <!-- Guest name override -->
+    <div class="field hidden" id="guest-wrap">
+      <label class="lbl">Your Full Name</label>
+      <input type="text" class="plain" id="f-guest" placeholder="Enter your full name">
+    </div>
+
+    <!-- Auto-populated contact info -->
+    <div class="af-row">
+      <div class="af-field">
+        <label class="lbl">Business</label>
+        <div class="af-val" id="disp-biz">select name above</div>
+      </div>
+      <div class="af-field">
+        <label class="lbl">Phone</label>
+        <div class="af-val" id="disp-phone">select name above</div>
+      </div>
+    </div>
+    <div class="field">
+      <label class="lbl">Email</label>
+      <div class="af-val" id="disp-email">select name above</div>
+    </div>
+
+    <div class="section-divider">
+      <div class="sd-line"></div>
+      <div class="sd-text">Prayer Requests</div>
+      <div class="sd-line"></div>
+    </div>
+
+    <!-- Prayer request fields -->
+    <div class="field">
+      <label class="lbl">Personal / Family</label>
+      <textarea id="f-personal" rows="3" placeholder="Personal and family prayer requests..."></textarea>
+    </div>
+    <div class="field">
+      <label class="lbl">Business Prayer Requests</label>
+      <textarea id="f-biz" rows="3" placeholder="Business prayer requests..."></textarea>
+    </div>
+    <div class="field">
+      <label class="lbl">Paul / Timothy?</label>
+      <textarea id="f-paultim" rows="3" placeholder="Who are you mentoring (Timothy)? Who is your Paul (mentor)?"></textarea>
+    </div>
+    <div class="unconvinced-box">
+      <label class="lbl" style="display:block;margin-bottom:8px">An Unconvinced Person</label>
+      <input type="text" class="plain" id="f-unconvinced"
+        placeholder="Name of someone to pray for who doesn't yet know Christ...">
+    </div>
+
+    <div class="section-divider">
+      <div class="sd-line"></div>
+      <div class="sd-text">Share This Card</div>
+      <div class="sd-line"></div>
+    </div>
+
+    <!-- Praying For dropdown -->
+    <div class="praying-for-box">
+      <label class="lbl" style="display:block;margin-bottom:8px">&#9825; &nbsp;Who will be praying for you?</label>
+      <div class="sel-wrap">
+        <select id="f-recipient">
+          <option value="">&#8212; Select your prayer partner &#8212;</option>
+          <!-- Options populated dynamically by JS -->
+        </select>
+      </div>
+      <div style="margin-top:8px;font-family:'Barlow',sans-serif;font-size:12px;
+        font-style:italic;color:var(--muted)">
+        Your prayer card + PDF will be emailed to this person, with two follow-up reminders before the next CBMC meeting.
+      </div>
+    </div>
+
+    <!-- Single submit button -->
+    <button class="btn-submit" id="btn-submit" onclick="submitCard()">
+      Submit Prayer Card &amp; Send Email
+    </button>
+
+    <!-- Success banner -->
+    <div class="success-banner" id="success-banner">
+      <div class="s-icon">&#10003;</div>
+      <div class="s-title">Prayer Card Sent!</div>
+      <div class="s-sub" id="success-text">
+        Your card has been emailed and two follow-up reminders have been scheduled.
+      </div>
+    </div>
+
+    <!-- Error banner -->
+    <div class="error-banner" id="error-banner"></div>
+
+  </div><!-- /pane-form -->
+
+  <!-- ── QR Pane ─────────────────────────────────────────── -->
+  <div id="pane-qr" class="qr-body hidden">
+    <p class="qr-instruction">
+      Host this form at a URL and paste it below to generate a scannable QR code for your group.
+    </p>
+    <div class="field" style="text-align:left;margin-bottom:1.5rem">
+      <label class="lbl">Hosted Form URL</label>
+      <input type="url" class="plain" id="qr-url" style="margin-top:6px;font-size:14px"
+        placeholder="https://your-site.com/prayer-card" oninput="updateQR()">
+    </div>
+    <div id="qr-area">
+      <div class="qr-placeholder">Enter a URL above to generate your QR code</div>
+    </div>
+    <div class="qr-note">
+      <strong>How to Share</strong>
+      1. Save this HTML file and host it (church website, Google Sites, Netlify, etc.)<br>
+      2. Copy that URL and paste it above — QR code updates instantly.<br>
+      3. Right-click the QR image to save it.<br>
+      4. Print on bulletins or display on a screen for members to scan.
+    </div>
+    <button class="btn-outline" onclick="switchTab('form')">&#8592;&nbsp; Back to Form</button>
+  </div>
+
+</div><!-- /card -->
+
+<div class="page-footer">
+  &ldquo;Confess your sins to one another and pray for one another, that you may be healed.&rdquo; &mdash; James 5:16
+</div>
+<div class="tagline-footer">REACH &middot; EMPOWER &middot; DEPLOY</div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<script>
+// ── Contact database ─────────────────────────────────────
+var CONTACTS = {
+  "Derek Berning": {biz:"Midwest Bus Parts",            email:"derek@midwestbusparts.com",            phone:"763-516-0680"},
+  "Steve Beaman":  {biz:"IT Consultant (Facilitator)",  email:"steveb3148@gmail.com",                 phone:"763-234-7791"},
+  "Dan Schmoyer":  {biz:"Northwest Family Counseling",  email:"dan@northwestfamilycounseling.com",     phone:"763-220-2312"},
+  "Eric Agrimson": {biz:"Edward Jones",                 email:"eagrimson@gmail.com",                  phone:"763-276-0800"},
+  "Bob Miller":    {biz:"UB Flooring",                  email:"rmiller2626@gmail.com",                phone:"763-360-9992"},
+  "Kyle Trontvet": {biz:"Restore Chiropractic",         email:"drkyle@restorechiro.life",             phone:"218-686-4535"},
+  "Scott Adams":   {biz:"Adams Consulting",             email:"Scott.adams7@gmail.com",               phone:""},
+  "Dan Olson":     {biz:"Olson & Sons Electric",        email:"danolson@oseinc.com",                  phone:"320-333-2066"},
+  "Craig Darcy":   {biz:"HH Wheel and Trim",            email:"Craig.darcy@wheelauthority.net",       phone:""}
+};
+var MEMBER_NAMES = Object.keys(CONTACTS);
+
+// ── Build "Praying For" dropdown ──────────────────────────
+function buildRecipientDropdown(excludeName) {
+  var sel = document.getElementById('f-recipient');
+  sel.innerHTML = '<option value="">&#8212; Select your prayer partner &#8212;</option>';
+  MEMBER_NAMES.forEach(function(name) {
+    if (name === excludeName) return;
+    var opt = document.createElement('option');
+    opt.value = name;
+    opt.textContent = name + ' — ' + CONTACTS[name].biz;
+    sel.appendChild(opt);
+  });
+  // Always add Guest option
+  var guestOpt = document.createElement('option');
+  guestOpt.value = '__guest__';
+  guestOpt.textContent = 'Someone else...';
+  sel.appendChild(guestOpt);
+}
+
+// ── Name selection handler ────────────────────────────────
+function onNameChange() {
+  var sel = document.getElementById('f-name').value;
+  document.getElementById('guest-wrap').classList.toggle('hidden', sel !== '__guest__');
+  var c = CONTACTS[sel];
+  if (c) {
+    setDisp('disp-biz',   c.biz   || 'not on file');
+    setDisp('disp-phone', c.phone || 'not on file');
+    setDisp('disp-email', c.email || 'not on file');
+  } else {
+    clearDisp('disp-biz'); clearDisp('disp-phone'); clearDisp('disp-email');
+  }
+  // Rebuild recipient dropdown excluding selected submitter
+  buildRecipientDropdown(sel === '__guest__' ? null : sel);
+}
+
+function setDisp(id, val) {
+  var el = document.getElementById(id);
+  el.textContent = val;
+  el.classList.add('filled');
+  el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
+}
+function clearDisp(id) {
+  var el = document.getElementById(id);
+  el.textContent = 'select name above';
+  el.classList.remove('filled','flash');
+}
+
+// ── Tab switching ─────────────────────────────────────────
+function switchTab(t) {
+  document.getElementById('pane-form').classList.toggle('hidden', t !== 'form');
+  document.getElementById('pane-qr').classList.toggle('hidden',   t !== 'qr');
+  document.getElementById('tab-form').classList.toggle('active',  t === 'form');
+  document.getElementById('tab-qr').classList.toggle('active',    t === 'qr');
+}
+
+// ── QR code ───────────────────────────────────────────────
+function updateQR() {
+  var url  = document.getElementById('qr-url').value.trim();
+  var area = document.getElementById('qr-area');
+  if (!url) {
+    area.innerHTML = '<div class="qr-placeholder">Enter a URL above to generate your QR code</div>';
+    return;
+  }
+  area.innerHTML =
+    '<div class="qr-display"><div class="qr-lbl">Scan to Fill Out Your Prayer Card</div>'
+    + '<img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&color=0f1f35&bgcolor=ffffff&data='
+    + encodeURIComponent(url) + '" width="200" height="200" alt="QR Code">'
+    + '<div class="qr-lbl">CBMC &middot; Leadership Institute</div></div>';
+}
+
+// ── Helpers ───────────────────────────────────────────────
+function gv(id) { var e = document.getElementById(id); return e ? (e.value || '') : ''; }
+
+// ── Submit ────────────────────────────────────────────────
+function submitCard() {
+  // Validate
+  var nameSel    = document.getElementById('f-name').value;
+  var recipSel   = document.getElementById('f-recipient').value;
+
+  if (!nameSel) {
+    showError('Please select your name before submitting.');
+    return;
+  }
+  if (!recipSel) {
+    showError('Please select a prayer partner to send this card to.');
+    return;
+  }
+
+  var submitterName = (nameSel === '__guest__') ? gv('f-guest') : nameSel;
+  if (!submitterName) {
+    showError('Please enter your name in the Guest field.');
+    return;
+  }
+
+  var submitterInfo = CONTACTS[nameSel] || {biz:'', phone:'', email:''};
+  var recipientInfo = (recipSel !== '__guest__') ? (CONTACTS[recipSel] || {}) : {email:'', biz:''};
+
+  var payload = {
+    name:          submitterName,
+    email:         submitterInfo.email,
+    biz:           submitterInfo.biz,
+    phone:         submitterInfo.phone,
+    date:          gv('f-date'),
+    personal:      gv('f-personal'),
+    bizPrayer:     gv('f-biz'),
+    paulTimothy:   gv('f-paultim'),
+    unconvinced:   gv('f-unconvinced'),
+    recipientName: recipSel === '__guest__' ? 'Friend' : recipSel,
+    recipientEmail: recipientInfo.email || ''
+  };
+
+  if (!payload.recipientEmail) {
+    showError('No email found for the selected prayer partner. Please contact your group leader.');
+    return;
+  }
+
+  // Check if Apps Script URL is configured
+  if (!SCRIPT_URL || SCRIPT_URL === 'PASTE_YOUR_APPS_SCRIPT_URL_HERE') {
+    showError('The form is not yet connected to the backend. See CBMC_Setup_Guide.md to complete setup.');
+    return;
+  }
+
+  // UI — loading state
+  var btn = document.getElementById('btn-submit');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="loading-spinner"></span>Sending...';
+  hideMessages();
+
+  fetch(SCRIPT_URL, {
+    method:  'POST',
+    headers: {'Content-Type': 'application/json'},
+    body:    JSON.stringify(payload)
+  })
+  .then(function(res) { return res.json(); })
+  .then(function(json) {
+    btn.disabled = false;
+    btn.innerHTML = 'Submit Prayer Card &amp; Send Email';
+    if (json.status === 'success') {
+      showSuccess(payload.recipientName, payload.recipientEmail);
+      resetForm();
+    } else {
+      showError('Something went wrong: ' + (json.message || 'Unknown error.'));
+    }
+  })
+  .catch(function(err) {
+    btn.disabled = false;
+    btn.innerHTML = 'Submit Prayer Card &amp; Send Email';
+    showError('Could not reach the server. Check your internet connection and try again. (' + err.message + ')');
+  });
+}
+
+function showSuccess(recipName, recipEmail) {
+  var banner = document.getElementById('success-banner');
+  document.getElementById('success-text').innerHTML =
+    'Your prayer card was emailed to <strong>' + recipName + '</strong> (' + recipEmail + '). '
+    + 'Two follow-up reminders have been automatically scheduled before the next CBMC meeting.';
+  banner.style.display = 'block';
+  document.getElementById('error-banner').style.display = 'none';
+}
+
+function showError(msg) {
+  var banner = document.getElementById('error-banner');
+  banner.textContent = '⚠ ' + msg;
+  banner.style.display = 'block';
+  document.getElementById('success-banner').style.display = 'none';
+}
+
+function hideMessages() {
+  document.getElementById('success-banner').style.display = 'none';
+  document.getElementById('error-banner').style.display = 'none';
+}
+
+function resetForm() {
+  ['f-personal','f-biz','f-paultim'].forEach(function(id) {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('f-unconvinced').value = '';
+  document.getElementById('f-recipient').value = '';
+}
+
+// ── Init ──────────────────────────────────────────────────
+document.getElementById('f-date').value =
+  new Date().toLocaleDateString('en-US',{month:'2-digit',day:'2-digit',year:'2-digit'});
+buildRecipientDropdown(null);
+</script>
+
+</body>
+</html>
