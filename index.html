@@ -1,0 +1,581 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #0000e9; -webkit-text-stroke: #0000e9}
+    span.s1 {font: 12.0px Helvetica; color: #000000; -webkit-text-stroke: 0px #000000}
+    span.s2 {font: 12.0px Times; text-decoration: underline ; font-kerning: none}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1">&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1">&lt;title&gt;Prayer Partner Card — CBMC&lt;/title&gt;</p>
+<p class="p1">&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</p>
+<p class="p1">&lt;link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&amp;family=Barlow:wght@300;400;500;600&amp;display=swap"&gt;</p>
+<p class="p1">&lt;style&gt;</p>
+<p class="p1">/* ── Reset ──────────────────────────────────────────────── */</p>
+<p class="p1">*{box-sizing:border-box;margin:0;padding:0}</p>
+<p class="p1">:root{</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--navy:#0f1f35; --navy2:#1a3055;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--orange:#e87722; --orange2:#f59340;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--cream:#f8f6f2; --warm:#4a3820;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--border:#c8bba4; --muted:#8a7e6e;</p>
+<p class="p1">}</p>
+<p class="p1">body{</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family:'Barlow',sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>min-height:100vh;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background:linear-gradient(160deg,var(--navy) 0%,var(--navy2) 55%,var(--navy) 100%);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding:2rem 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display:flex;flex-direction:column;align-items:center;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* ── Card ───────────────────────────────────────────────── */</p>
+<p class="p1">.card{width:100%;max-width:660px;background:var(--cream);border-radius:6px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>box-shadow:0 32px 80px rgba(0,0,0,.55),0 0 0 1px rgba(232,119,34,.25);overflow:hidden}</p>
+<p class="p2"><br></p>
+<p class="p1">/* ── Header ─────────────────────────────────────────────── */</p>
+<p class="p1">.card-header{</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background:linear-gradient(135deg,var(--navy),var(--navy2));</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding:2rem 2.5rem 1.75rem;text-align:center;position:relative;</p>
+<p class="p1">}</p>
+<p class="p1">.card-header::after{content:'';position:absolute;bottom:0;left:0;right:0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>height:3px;background:linear-gradient(90deg,transparent,var(--orange),transparent)}</p>
+<p class="p1">.cbmc-logo{height:42px;width:auto;margin-bottom:14px;filter:brightness(0) invert(1)}</p>
+<p class="p1">#logo-fallback{display:none;margin-bottom:14px}</p>
+<p class="p1">#logo-fallback .f-name{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:800;letter-spacing:.1em;color:#fff}</p>
+<p class="p1">#logo-fallback .f-sub{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:600;letter-spacing:.25em;color:rgba(255,255,255,.7);text-transform:uppercase}</p>
+<p class="p1">.card-title{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:800;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>letter-spacing:.08em;text-transform:uppercase;color:#fff;margin-bottom:4px}</p>
+<p class="p1">.card-sub{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>letter-spacing:.35em;text-transform:uppercase;color:var(--orange2);margin-bottom:10px}</p>
+<p class="p1">.verse-tag{display:inline-block;background:rgba(232,119,34,.18);border:1px solid rgba(232,119,34,.4);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-radius:20px;padding:3px 14px;font-family:'Barlow',sans-serif;font-size:12px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-style:italic;color:var(--orange2);letter-spacing:.04em}</p>
+<p class="p1">.hdr-rule{display:flex;align-items:center;gap:10px;margin-top:14px}</p>
+<p class="p1">.hrl{flex:1;height:1px;background:rgba(232,119,34,.3)}</p>
+<p class="p1">.hrd{width:6px;height:6px;background:var(--orange);border-radius:50%;flex-shrink:0}</p>
+<p class="p2"><br></p>
+<p class="p1">/* ── Tabs ───────────────────────────────────────────────── */</p>
+<p class="p1">.tabs{display:flex;border-bottom:1px solid #ddd5c0;background:#f0ebe0}</p>
+<p class="p1">.tab{flex:1;padding:.7rem;background:none;border:none;border-bottom:3px solid transparent;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>letter-spacing:.2em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:all .2s}</p>
+<p class="p1">.tab.active{border-bottom-color:var(--orange);color:var(--navy)}</p>
+<p class="p1">.tab:hover:not(.active){color:var(--navy);background:rgba(0,0,0,.03)}</p>
+<p class="p2"><br></p>
+<p class="p1">/* ── Form body ──────────────────────────────────────────── */</p>
+<p class="p1">.body{padding:2rem 2.5rem 2.5rem}</p>
+<p class="p1">.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem}</p>
+<p class="p1">.field{display:flex;flex-direction:column;gap:5px;margin-bottom:1.25rem}</p>
+<p class="p1">.lbl{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>letter-spacing:.22em;color:var(--warm);text-transform:uppercase}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Selects */</p>
+<p class="p1">.sel-wrap{position:relative}</p>
+<p class="p1">.sel-wrap::after{content:'▾';position:absolute;right:10px;top:50%;transform:translateY(-50%);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color:var(--orange);pointer-events:none;font-size:14px;font-weight:bold}</p>
+<p class="p1">select{-webkit-appearance:none;appearance:none;background:#fff;border:1.5px solid var(--border);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-radius:4px;padding:9px 36px 9px 12px;font-family:'Barlow',sans-serif;font-size:15px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color:var(--navy);outline:none;width:100%;cursor:pointer;transition:border-color .2s}</p>
+<p class="p1">select:focus{border-color:var(--orange)}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Auto-fill display */</p>
+<p class="p1">.af-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem}</p>
+<p class="p1">.af-field{display:flex;flex-direction:column;gap:5px}</p>
+<p class="p1">.af-val{position:relative;border-bottom:2px solid var(--border);padding:7px 28px 7px 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family:'Barlow',sans-serif;font-size:15px;color:var(--muted);font-style:italic;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>min-height:36px;transition:all .3s}</p>
+<p class="p1">.af-val.filled{color:var(--navy);font-style:normal;border-bottom-color:var(--orange)}</p>
+<p class="p1">.af-val.filled::after{content:'✓';position:absolute;right:0;top:7px;color:var(--orange);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size:13px;font-weight:bold}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Text inputs */</p>
+<p class="p1">.plain{background:transparent;border:none;border-bottom:2px solid var(--border);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding:7px 2px;font-family:'Barlow',sans-serif;font-size:15px;color:var(--navy);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>outline:none;width:100%;transition:border-color .2s}</p>
+<p class="p1">.plain:focus{border-bottom-color:var(--orange)}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Textareas */</p>
+<p class="p1">textarea{background:rgba(255,255,255,.65);border:1.5px solid var(--border);border-radius:4px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding:10px 12px;font-family:'Barlow',sans-serif;font-size:14px;color:var(--navy);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>outline:none;resize:vertical;min-height:80px;width:100%;line-height:1.6;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>transition:border-color .2s}</p>
+<p class="p1">textarea:focus{border-color:var(--orange)}</p>
+<p class="p1">textarea::placeholder{color:#b0a494}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Unconvinced box */</p>
+<p class="p1">.unconvinced-box{background:rgba(15,31,53,.05);border:1.5px solid var(--border);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-left:3px solid var(--orange);border-radius:4px;padding:12px 14px;margin-bottom:1.25rem}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Praying-for box */</p>
+<p class="p1">.praying-for-box{background:rgba(232,119,34,.06);border:1.5px solid rgba(232,119,34,.35);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-radius:4px;padding:14px 16px;margin-bottom:1.5rem}</p>
+<p class="p1">.praying-for-box .lbl{color:var(--orange);font-size:12px}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Divider */</p>
+<p class="p1">.section-divider{display:flex;align-items:center;gap:10px;margin:0.25rem 0 1.25rem}</p>
+<p class="p1">.sd-line{flex:1;height:1px;background:#ddd5c0}</p>
+<p class="p1">.sd-text{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>letter-spacing:.22em;text-transform:uppercase;color:var(--muted);white-space:nowrap;padding:0 6px}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Submit button */</p>
+<p class="p1">.btn-submit{</p>
+<p class="p1"><span class="Apple-converted-space">  </span>width:100%;background:linear-gradient(135deg,var(--orange),var(--orange2));</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color:#fff;border:none;padding:1rem 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:800;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>letter-spacing:.25em;text-transform:uppercase;cursor:pointer;border-radius:4px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>box-shadow:0 4px 18px rgba(232,119,34,.4);transition:all .2s;margin-top:1.5rem}</p>
+<p class="p1">.btn-submit:hover:not(:disabled){box-shadow:0 6px 24px rgba(232,119,34,.6);transform:translateY(-1px)}</p>
+<p class="p1">.btn-submit:disabled{opacity:.6;cursor:not-allowed;transform:none}</p>
+<p class="p2"><br></p>
+<p class="p1">/* States */</p>
+<p class="p1">.loading-spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.4);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite;vertical-align:middle;margin-right:8px}</p>
+<p class="p1">@keyframes spin{to{transform:rotate(360deg)}}</p>
+<p class="p2"><br></p>
+<p class="p1">.success-banner{display:none;background:#1a5c2a;color:#fff;border-radius:4px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding:16px 20px;margin-top:1.5rem;text-align:center;font-family:'Barlow',sans-serif}</p>
+<p class="p1">.success-banner .s-icon{font-size:28px;margin-bottom:6px}</p>
+<p class="p1">.success-banner .s-title{font-family:'Barlow Condensed',sans-serif;font-size:16px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:4px}</p>
+<p class="p1">.success-banner .s-sub{font-size:13px;opacity:.85;line-height:1.5}</p>
+<p class="p2"><br></p>
+<p class="p1">.error-banner{display:none;background:#7a1a1a;color:#fff;border-radius:4px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding:14px 18px;margin-top:1.5rem;text-align:center;font-family:'Barlow',sans-serif;font-size:13px}</p>
+<p class="p2"><br></p>
+<p class="p1">/* QR pane */</p>
+<p class="p1">.qr-body{padding:2rem 2.5rem 2.5rem;text-align:center}</p>
+<p class="p1">.qr-instruction{font-style:italic;font-size:15px;color:var(--warm);margin-bottom:1.5rem;line-height:1.6}</p>
+<p class="p1">.qr-display{display:inline-flex;flex-direction:column;align-items:center;gap:12px;padding:1.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background:#fff;border:2px solid var(--border);border-radius:6px;box-shadow:0 8px 32px rgba(0,0,0,.12)}</p>
+<p class="p1">.qr-lbl{font-family:'Barlow Condensed',sans-serif;font-size:10px;font-weight:700;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>letter-spacing:.25em;color:var(--warm);text-transform:uppercase}</p>
+<p class="p1">.qr-placeholder{width:200px;height:200px;border:2px dashed var(--border);border-radius:6px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display:flex;align-items:center;justify-content:center;font-style:italic;font-size:14px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color:var(--muted);padding:1rem;margin:0 auto;text-align:center}</p>
+<p class="p1">.qr-note{font-style:italic;font-size:13px;color:var(--muted);margin-top:1.5rem;line-height:1.7;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding:1rem;background:rgba(15,31,53,.05);border-radius:4px;border:1px solid #ddd5c0;text-align:left}</p>
+<p class="p1">.qr-note strong{font-style:normal;font-family:'Barlow Condensed',sans-serif;font-size:10px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>letter-spacing:.18em;text-transform:uppercase;display:block;margin-bottom:6px;color:var(--navy)}</p>
+<p class="p1">.btn-outline{background:transparent;color:var(--navy);border:2px solid var(--navy);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding:.75rem 1.5rem;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>letter-spacing:.2em;text-transform:uppercase;cursor:pointer;border-radius:4px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>transition:all .2s;margin-top:1.25rem}</p>
+<p class="p1">.btn-outline:hover{background:rgba(15,31,53,.06)}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Footer */</p>
+<p class="p1">.page-footer{text-align:center;margin-top:2rem;font-style:italic;font-size:12px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color:rgba(248,246,242,.45);letter-spacing:.04em}</p>
+<p class="p1">.tagline-footer{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>letter-spacing:.3em;text-transform:uppercase;color:rgba(232,119,34,.5);margin-top:4px}</p>
+<p class="p2"><br></p>
+<p class="p1">@keyframes af-flash{0%{background:rgba(232,119,34,.18)}100%{background:transparent}}</p>
+<p class="p1">.flash{animation:af-flash .6s ease-out}</p>
+<p class="p1">.hidden{display:none}</p>
+<p class="p2"><br></p>
+<p class="p1">@media(max-width:520px){</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.two-col,.af-row{grid-template-columns:1fr}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.body,.qr-body{padding:1.5rem}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.card-title{font-size:22px}</p>
+<p class="p1">}</p>
+<p class="p1">&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- ═══════════════════════════════════════════════════════════</p>
+<p class="p3"><span class="s1"><span class="Apple-converted-space">     </span><a href="https://script.google.com/macros/s/AKfycbyTbNycqvfZ5_xmRhFkZFSIAJDKBCm0XlhFPF7QAFMv4zxeuVR7F6f9gBlDM8NbxKdixw/exec"><span class="s2">https://script.google.com/macros/s/AKfycbyTbNycqvfZ5_xmRhFkZFSIAJDKBCm0XlhFPF7QAFMv4zxeuVR7F6f9gBlDM8NbxKdixw/exec</span></a></span></p>
+<p class="p1"><span class="Apple-converted-space"> </span>(Step 6 in</p>
+<p class="p1"><span class="Apple-converted-space">     </span>CBMC_Setup_Guide.md). Replace the placeholder below.</p>
+<p class="p1"><span class="Apple-converted-space">     </span>═══════════════════════════════════════════════════════════ --&gt;</p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p3"><span class="s1">var SCRIPT_URL = '<a href="https://script.google.com/macros/s/AKfycbyTbNycqvfZ5_xmRhFkZFSIAJDKBCm0XlhFPF7QAFMv4zxeuVR7F6f9gBlDM8NbxKdixw/exec"><span class="s2">https://script.google.com/macros/s/AKfycbyTbNycqvfZ5_xmRhFkZFSIAJDKBCm0XlhFPF7QAFMv4zxeuVR7F6f9gBlDM8NbxKdixw/exec</span></a></span></p>
+<p class="p1">';</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p1">&lt;!-- ════════════════════════════════════════════════════════ --&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="card"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Header --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="card-header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;img class="cbmc-logo"</p>
+<p class="p1"><span class="Apple-converted-space">      </span>src="https://cbmc.com/wp-content/themes/cbmc/assets/images/cbmc-horizontal-white-mono.svg"</p>
+<p class="p1"><span class="Apple-converted-space">      </span>alt="CBMC"</p>
+<p class="p1"><span class="Apple-converted-space">      </span>onerror="this.style.display='none';document.getElementById('logo-fallback').style.display='block'"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="logo-fallback"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="f-name"&gt;CBMC&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="f-sub"&gt;Christian Business Men's Connection&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="card-title"&gt;Prayer Partner Card&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="card-sub"&gt;Leadership Institute&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="verse-tag"&gt;James 5:16&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="hdr-rule"&gt;&lt;div class="hrl"&gt;&lt;/div&gt;&lt;div class="hrd"&gt;&lt;/div&gt;&lt;div class="hrl"&gt;&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Tabs --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="tabs"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="tab active" id="tab-form" onclick="switchTab('form')"&gt;Fill Out Card&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="tab" id="tab-qr" onclick="switchTab('qr')"&gt;Share QR Code&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- ── Form Pane ───────────────────────────────────────── --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="pane-form" class="body"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Name + Date --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="two-col"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label class="lbl"&gt;Select Your Name&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="sel-wrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;select id="f-name" onchange="onNameChange()"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value=""&gt;&amp;#8212; Choose your name &amp;#8212;&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="Derek Berning"&gt;Derek Berning&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="Steve Beaman"&gt;Steve Beaman&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="Dan Schmoyer"&gt;Dan Schmoyer&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="Eric Agrimson"&gt;Eric Agrimson&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="Bob Miller"&gt;Bob Miller&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="Kyle Trontvet"&gt;Kyle Trontvet&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="Scott Adams"&gt;Scott Adams&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="Dan Olson"&gt;Dan Olson&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="Craig Darcy"&gt;Craig Darcy&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;option value="__guest__"&gt;Guest / Other...&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label class="lbl"&gt;Date&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="text" class="plain" id="f-date" placeholder="MM/DD/YY"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Guest name override --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="field hidden" id="guest-wrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="lbl"&gt;Your Full Name&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;input type="text" class="plain" id="f-guest" placeholder="Enter your full name"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Auto-populated contact info --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="af-row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="af-field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label class="lbl"&gt;Business&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="af-val" id="disp-biz"&gt;select name above&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="af-field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;label class="lbl"&gt;Phone&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="af-val" id="disp-phone"&gt;select name above&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="lbl"&gt;Email&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="af-val" id="disp-email"&gt;select name above&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="section-divider"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="sd-line"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="sd-text"&gt;Prayer Requests&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="sd-line"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Prayer request fields --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="lbl"&gt;Personal / Family&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;textarea id="f-personal" rows="3" placeholder="Personal and family prayer requests..."&gt;&lt;/textarea&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="lbl"&gt;Business Prayer Requests&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;textarea id="f-biz" rows="3" placeholder="Business prayer requests..."&gt;&lt;/textarea&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="field"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="lbl"&gt;Paul / Timothy?&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;textarea id="f-paultim" rows="3" placeholder="Who are you mentoring (Timothy)? Who is your Paul (mentor)?"&gt;&lt;/textarea&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="unconvinced-box"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="lbl" style="display:block;margin-bottom:8px"&gt;An Unconvinced Person&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;input type="text" class="plain" id="f-unconvinced"</p>
+<p class="p1"><span class="Apple-converted-space">        </span>placeholder="Name of someone to pray for who doesn't yet know Christ..."&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="section-divider"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="sd-line"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="sd-text"&gt;Share This Card&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="sd-line"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Praying For dropdown --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="praying-for-box"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="lbl" style="display:block;margin-bottom:8px"&gt;&amp;#9825; &amp;nbsp;Who will be praying for you?&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="sel-wrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;select id="f-recipient"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;option value=""&gt;&amp;#8212; Select your prayer partner &amp;#8212;&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;!-- Options populated dynamically by JS --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div style="margin-top:8px;font-family:'Barlow',sans-serif;font-size:12px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>font-style:italic;color:var(--muted)"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Your prayer card + PDF will be emailed to this person, with two follow-up reminders before the next CBMC meeting.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Single submit button --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="btn-submit" id="btn-submit" onclick="submitCard()"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>Submit Prayer Card &amp;amp; Send Email</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/button&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Success banner --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="success-banner" id="success-banner"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="s-icon"&gt;&amp;#10003;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="s-title"&gt;Prayer Card Sent!&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="s-sub" id="success-text"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>Your card has been emailed and two follow-up reminders have been scheduled.</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Error banner --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="error-banner" id="error-banner"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;&lt;!-- /pane-form --&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- ── QR Pane ─────────────────────────────────────────── --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="pane-qr" class="qr-body hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="qr-instruction"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>Host this form at a URL and paste it below to generate a scannable QR code for your group.</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="field" style="text-align:left;margin-bottom:1.5rem"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;label class="lbl"&gt;Hosted Form URL&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;input type="url" class="plain" id="qr-url" style="margin-top:6px;font-size:14px"</p>
+<p class="p1"><span class="Apple-converted-space">        </span>placeholder="https://your-site.com/prayer-card" oninput="updateQR()"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="qr-area"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="qr-placeholder"&gt;Enter a URL above to generate your QR code&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="qr-note"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;strong&gt;How to Share&lt;/strong&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>1. Save this HTML file and host it (church website, Google Sites, Netlify, etc.)&lt;br&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>2. Copy that URL and paste it above — QR code updates instantly.&lt;br&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>3. Right-click the QR image to save it.&lt;br&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>4. Print on bulletins or display on a screen for members to scan.</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="btn-outline" onclick="switchTab('form')"&gt;&amp;#8592;&amp;nbsp; Back to Form&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/div&gt;&lt;!-- /card --&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="page-footer"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&amp;ldquo;Confess your sins to one another and pray for one another, that you may be healed.&amp;rdquo; &amp;mdash; James 5:16</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="tagline-footer"&gt;REACH &amp;middot; EMPOWER &amp;middot; DEPLOY&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- ═══════════════════════════════════════════════════════ --&gt;</p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1">// ── Contact database ─────────────────────────────────────</p>
+<p class="p1">var CONTACTS = {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>"Derek Berning": {biz:"Midwest Bus Parts",<span class="Apple-converted-space">            </span>email:"derek@midwestbusparts.com",<span class="Apple-converted-space">            </span>phone:"763-516-0680"},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>"Steve Beaman":<span class="Apple-converted-space">  </span>{biz:"IT Consultant (Facilitator)",<span class="Apple-converted-space">  </span>email:"steveb3148@gmail.com", <span class="Apple-converted-space">                </span>phone:"763-234-7791"},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>"Dan Schmoyer":<span class="Apple-converted-space">  </span>{biz:"Northwest Family Counseling",<span class="Apple-converted-space">  </span>email:"dan@northwestfamilycounseling.com", <span class="Apple-converted-space">    </span>phone:"763-220-2312"},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>"Eric Agrimson": {biz:"Edward Jones", <span class="Apple-converted-space">                </span>email:"eagrimson@gmail.com",<span class="Apple-converted-space">                  </span>phone:"763-276-0800"},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>"Bob Miller":<span class="Apple-converted-space">    </span>{biz:"UB Flooring",<span class="Apple-converted-space">                  </span>email:"rmiller2626@gmail.com",<span class="Apple-converted-space">                </span>phone:"763-360-9992"},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>"Kyle Trontvet": {biz:"Restore Chiropractic", <span class="Apple-converted-space">        </span>email:"drkyle@restorechiro.life", <span class="Apple-converted-space">            </span>phone:"218-686-4535"},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>"Scott Adams": <span class="Apple-converted-space">  </span>{biz:"Adams Consulting", <span class="Apple-converted-space">            </span>email:"Scott.adams7@gmail.com", <span class="Apple-converted-space">              </span>phone:""},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>"Dan Olson": <span class="Apple-converted-space">    </span>{biz:"Olson &amp; Sons Electric",<span class="Apple-converted-space">        </span>email:"danolson@oseinc.com",<span class="Apple-converted-space">                  </span>phone:"320-333-2066"},</p>
+<p class="p1"><span class="Apple-converted-space">  </span>"Craig Darcy": <span class="Apple-converted-space">  </span>{biz:"HH Wheel and Trim",<span class="Apple-converted-space">            </span>email:"Craig.darcy@wheelauthority.net", <span class="Apple-converted-space">      </span>phone:""}</p>
+<p class="p1">};</p>
+<p class="p1">var MEMBER_NAMES = Object.keys(CONTACTS);</p>
+<p class="p2"><br></p>
+<p class="p1">// ── Build "Praying For" dropdown ──────────────────────────</p>
+<p class="p1">function buildRecipientDropdown(excludeName) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>var sel = document.getElementById('f-recipient');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>sel.innerHTML = '&lt;option value=""&gt;&amp;#8212; Select your prayer partner &amp;#8212;&lt;/option&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>MEMBER_NAMES.forEach(function(name) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (name === excludeName) return;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>var opt = document.createElement('option');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>opt.value = name;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>opt.textContent = name + ' — ' + CONTACTS[name].biz;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>sel.appendChild(opt);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Always add Guest option</p>
+<p class="p1"><span class="Apple-converted-space">  </span>var guestOpt = document.createElement('option');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>guestOpt.value = '__guest__';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>guestOpt.textContent = 'Someone else...';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>sel.appendChild(guestOpt);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// ── Name selection handler ────────────────────────────────</p>
+<p class="p1">function onNameChange() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>var sel = document.getElementById('f-name').value;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('guest-wrap').classList.toggle('hidden', sel !== '__guest__');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>var c = CONTACTS[sel];</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (c) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>setDisp('disp-biz', <span class="Apple-converted-space">  </span>c.biz <span class="Apple-converted-space">  </span>|| 'not on file');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>setDisp('disp-phone', c.phone || 'not on file');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>setDisp('disp-email', c.email || 'not on file');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>clearDisp('disp-biz'); clearDisp('disp-phone'); clearDisp('disp-email');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Rebuild recipient dropdown excluding selected submitter</p>
+<p class="p1"><span class="Apple-converted-space">  </span>buildRecipientDropdown(sel === '__guest__' ? null : sel);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function setDisp(id, val) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>var el = document.getElementById(id);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>el.textContent = val;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>el.classList.add('filled');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');</p>
+<p class="p1">}</p>
+<p class="p1">function clearDisp(id) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>var el = document.getElementById(id);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>el.textContent = 'select name above';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>el.classList.remove('filled','flash');</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// ── Tab switching ─────────────────────────────────────────</p>
+<p class="p1">function switchTab(t) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('pane-form').classList.toggle('hidden', t !== 'form');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('pane-qr').classList.toggle('hidden', <span class="Apple-converted-space">  </span>t !== 'qr');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('tab-form').classList.toggle('active',<span class="Apple-converted-space">  </span>t === 'form');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('tab-qr').classList.toggle('active',<span class="Apple-converted-space">    </span>t === 'qr');</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// ── QR code ───────────────────────────────────────────────</p>
+<p class="p1">function updateQR() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>var url<span class="Apple-converted-space">  </span>= document.getElementById('qr-url').value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">  </span>var area = document.getElementById('qr-area');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (!url) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>area.innerHTML = '&lt;div class="qr-placeholder"&gt;Enter a URL above to generate your QR code&lt;/div&gt;';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>area.innerHTML =</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'&lt;div class="qr-display"&gt;&lt;div class="qr-lbl"&gt;Scan to Fill Out Your Prayer Card&lt;/div&gt;'</p>
+<p class="p1"><span class="Apple-converted-space">    </span>+ '&lt;img src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&amp;color=0f1f35&amp;bgcolor=ffffff&amp;data='</p>
+<p class="p1"><span class="Apple-converted-space">    </span>+ encodeURIComponent(url) + '" width="200" height="200" alt="QR Code"&gt;'</p>
+<p class="p1"><span class="Apple-converted-space">    </span>+ '&lt;div class="qr-lbl"&gt;CBMC &amp;middot; Leadership Institute&lt;/div&gt;&lt;/div&gt;';</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// ── Helpers ───────────────────────────────────────────────</p>
+<p class="p1">function gv(id) { var e = document.getElementById(id); return e ? (e.value || '') : ''; }</p>
+<p class="p2"><br></p>
+<p class="p1">// ── Submit ────────────────────────────────────────────────</p>
+<p class="p1">function submitCard() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Validate</p>
+<p class="p1"><span class="Apple-converted-space">  </span>var nameSel<span class="Apple-converted-space">    </span>= document.getElementById('f-name').value;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>var recipSel <span class="Apple-converted-space">  </span>= document.getElementById('f-recipient').value;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (!nameSel) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>showError('Please select your name before submitting.');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (!recipSel) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>showError('Please select a prayer partner to send this card to.');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>var submitterName = (nameSel === '__guest__') ? gv('f-guest') : nameSel;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (!submitterName) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>showError('Please enter your name in the Guest field.');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>var submitterInfo = CONTACTS[nameSel] || {biz:'', phone:'', email:''};</p>
+<p class="p1"><span class="Apple-converted-space">  </span>var recipientInfo = (recipSel !== '__guest__') ? (CONTACTS[recipSel] || {}) : {email:'', biz:''};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>var payload = {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>name:<span class="Apple-converted-space">          </span>submitterName,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>email: <span class="Apple-converted-space">        </span>submitterInfo.email,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>biz: <span class="Apple-converted-space">          </span>submitterInfo.biz,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>phone: <span class="Apple-converted-space">        </span>submitterInfo.phone,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>date:<span class="Apple-converted-space">          </span>gv('f-date'),</p>
+<p class="p1"><span class="Apple-converted-space">    </span>personal:<span class="Apple-converted-space">      </span>gv('f-personal'),</p>
+<p class="p1"><span class="Apple-converted-space">    </span>bizPrayer: <span class="Apple-converted-space">    </span>gv('f-biz'),</p>
+<p class="p1"><span class="Apple-converted-space">    </span>paulTimothy: <span class="Apple-converted-space">  </span>gv('f-paultim'),</p>
+<p class="p1"><span class="Apple-converted-space">    </span>unconvinced: <span class="Apple-converted-space">  </span>gv('f-unconvinced'),</p>
+<p class="p1"><span class="Apple-converted-space">    </span>recipientName: recipSel === '__guest__' ? 'Friend' : recipSel,</p>
+<p class="p1"><span class="Apple-converted-space">    </span>recipientEmail: recipientInfo.email || ''</p>
+<p class="p1"><span class="Apple-converted-space">  </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (!payload.recipientEmail) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>showError('No email found for the selected prayer partner. Please contact your group leader.');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// Check if Apps Script URL is configured</p>
+<p class="p1"><span class="Apple-converted-space">  </span>if (!SCRIPT_URL || SCRIPT_URL === 'PASTE_YOUR_APPS_SCRIPT_URL_HERE') {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>showError('The form is not yet connected to the backend. See CBMC_Setup_Guide.md to complete setup.');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>return;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>// UI — loading state</p>
+<p class="p1"><span class="Apple-converted-space">  </span>var btn = document.getElementById('btn-submit');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>btn.disabled = true;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>btn.innerHTML = '&lt;span class="loading-spinner"&gt;&lt;/span&gt;Sending...';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>hideMessages();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>fetch(SCRIPT_URL, {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>method:<span class="Apple-converted-space">  </span>'POST',</p>
+<p class="p1"><span class="Apple-converted-space">    </span>headers: {'Content-Type': 'application/json'},</p>
+<p class="p1"><span class="Apple-converted-space">    </span>body:<span class="Apple-converted-space">    </span>JSON.stringify(payload)</p>
+<p class="p1"><span class="Apple-converted-space">  </span>})</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.then(function(res) { return res.json(); })</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.then(function(json) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>btn.disabled = false;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>btn.innerHTML = 'Submit Prayer Card &amp;amp; Send Email';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (json.status === 'success') {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>showSuccess(payload.recipientName, payload.recipientEmail);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>resetForm();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>showError('Something went wrong: ' + (json.message || 'Unknown error.'));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>})</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.catch(function(err) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>btn.disabled = false;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>btn.innerHTML = 'Submit Prayer Card &amp;amp; Send Email';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>showError('Could not reach the server. Check your internet connection and try again. (' + err.message + ')');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function showSuccess(recipName, recipEmail) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>var banner = document.getElementById('success-banner');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('success-text').innerHTML =</p>
+<p class="p1"><span class="Apple-converted-space">    </span>'Your prayer card was emailed to &lt;strong&gt;' + recipName + '&lt;/strong&gt; (' + recipEmail + '). '</p>
+<p class="p1"><span class="Apple-converted-space">    </span>+ 'Two follow-up reminders have been automatically scheduled before the next CBMC meeting.';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>banner.style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('error-banner').style.display = 'none';</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function showError(msg) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>var banner = document.getElementById('error-banner');</p>
+<p class="p1"><span class="Apple-converted-space">  </span>banner.textContent = '⚠ ' + msg;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>banner.style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('success-banner').style.display = 'none';</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function hideMessages() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('success-banner').style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('error-banner').style.display = 'none';</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">function resetForm() {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>['f-personal','f-biz','f-paultim'].forEach(function(id) {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById(id).value = '';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('f-unconvinced').value = '';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.getElementById('f-recipient').value = '';</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">// ── Init ──────────────────────────────────────────────────</p>
+<p class="p1">document.getElementById('f-date').value =</p>
+<p class="p1"><span class="Apple-converted-space">  </span>new Date().toLocaleDateString('en-US',{month:'2-digit',day:'2-digit',year:'2-digit'});</p>
+<p class="p1">buildRecipientDropdown(null);</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
